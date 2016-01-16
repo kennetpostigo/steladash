@@ -2,10 +2,31 @@
   "name": "steladash",
   "version": "0.0.1",
   "private": true,
+  "description": "Dash Hack",
+  "main": "index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennetpostigo/steladash.git"
+  },
+  "author": "Stela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennetpostigo/steladash/issues"
+  },
+  "homepage": "https://github.com/kennetpostigo/steladash#readme",
+  "devDependencies": {
+    "react-native": "0.17.0",
+    "body-parser": "^1.14.2",
+    "casperjs": "^1.1.0-beta3",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5",
+    "noflo-automaton": "^0.1.6",
+    "pizzapi": "0.0.8"
+  },
   "dependencies": {
-    "react-native": "0.17.0"
+    "nodemon": "^1.8.1"
   }
 }
