@@ -1,5 +1,5 @@
 var express = require( 'express' ),
-	pizzapi = require( 'pizzapi' ),
+	dominos = require( 'dominos' ),
 	router = express.Router();
 
 router.route( '/getMenu/:id' )
@@ -8,7 +8,7 @@ router.route( '/getMenu/:id' )
 			console.log("getMenu");
 		var storeID = req.params.id;
     // The docs need to be updated The id field needs to be set beforehand
-		var myStore = new pizzapi.Store( storeID);
+		var myStore = new dominos.Store( storeID);
 		myStore.ID = storeID;
 		myStore.getFriendlyNames(
 			function ( storeData ) {
