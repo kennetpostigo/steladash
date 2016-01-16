@@ -7,6 +7,7 @@ var express = require( 'express' ),
 
 router.route( '/order' )
 	.post( function ( req, res ) {
+		console.log("order pizza")
 		var customerOrder = req.body.order;
 
 		var order = new pizzapi.Order( {

@@ -5,7 +5,7 @@ var express = require( 'express' ),
 
 router.route( '/findNearbyStores' )
 	.post( function ( req, res ) {
-		console.log( req.body );
+		console.log("findNearbyStores");
 		pizzapi.Util.findNearbyStores(
 			'4000 Central Florida Blvd, Orlando, FL 32816',
 			'Delivery',

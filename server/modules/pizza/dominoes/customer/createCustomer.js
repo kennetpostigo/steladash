@@ -5,6 +5,7 @@ var express = require('express'),
 
   router.route('/addCustomer')
     .post(function(req,res){
+      console.log("addCustomer");
       console.log(req.body);
       var customer = req.body.customer;
 
