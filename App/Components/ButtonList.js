@@ -24,7 +24,7 @@ module.exports =  React.createClass({
     if(this.state.show){
       return (<View>
         <Text style={styles.title}>Your Stela Buttons</Text>
-        <TouchableHighlight onPress={this.changeRoute}><Image source={require('./../../assets/DashButton.png')} style={styles.DashButton}></Image></TouchableHighlight>
+        <TouchableHighlight onPress={this.changeRoute} style={styles.btn}><Image source={require('./../../assets/DashButton.png')} style={styles.DashButton}></Image></TouchableHighlight>
         <TouchableHighlight onPress={this.removeButton} style={styles.removeItem}><Text style={styles.btnText}>Remove Dominos Button</Text></TouchableHighlight>
       </View>);
     } else{
@@ -64,7 +64,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     backgroundColor: '#ffffff',
   },
   title: {
@@ -74,13 +73,23 @@ var styles = StyleSheet.create({
     marginBottom: 8,
     height: 60,
     textAlign: 'center',
-    backgroundColor: '#3B3738',
+    backgroundColor: '#2c3e50',
     color: '#ffffff',
     justifyContent: 'center',
   },
+  btn:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
   DashButton: {
     flex: 1,
-    height: 140,
+    flexDirection: 'row',
+    resizeMode:'stretch',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    marginBottom: 275
   },
   listView: {
     paddingTop: 20,
@@ -88,13 +97,15 @@ var styles = StyleSheet.create({
   },
   btnText: {
     color: '#ffffff',
-    fontSize: 16
+    fontSize: 16,
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start'
   },
   removeItem:{
     flex:1,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor:'#c0392b',
+    backgroundColor:'#DD2838',
     height: 30
   }
 });

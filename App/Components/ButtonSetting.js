@@ -37,7 +37,7 @@ module.exports = React.createClass({
         },
         perperoni: 0,
         cheese: 0,
-        chickenWings: 0,
+        hotWings: 0,
         breadSticks: 0
       },
       show: true,
@@ -69,7 +69,7 @@ module.exports = React.createClass({
     .done();
   },
   render: function() {
-    var radio_peperoni = [
+    var radio_pepperoni = [
       {label: 'No', value: 0 },
       {label: 'Yes', value: 1 },
     ];
@@ -77,7 +77,7 @@ module.exports = React.createClass({
       {label: 'No', value: 0 },
       {label: 'Yes', value: 1 },
     ];
-    var radio_chickenWings = [
+    var radio_hotWings = [
       {label: 'No', value: 0 },
       {label: 'Yes', value: 1 },
     ];
@@ -99,9 +99,9 @@ module.exports = React.createClass({
           <TextInput style={styles.input} ref="zip" value={this.state.button.userDetails.zip} placeholder="Zip"/>
 
           <Text>Order Information</Text>
-            <Text>Peperoni:</Text><Radio radio_props={radio_peperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({peperoni:value})}}/>
+            <Text>Pepperoni:</Text><Radio radio_props={radio_pepperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({pepperoni:value})}}/>
             <Text>Cheese:</Text><Radio radio_props={radio_cheese} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({cheese:value})}}/>
-            <Text>Chicken Wings::</Text><Radio radio_props={radio_chickenWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({chickenWings:value})}}/>
+            <Text>Hot Wings:</Text><Radio radio_props={radio_hotWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({hotWings:value})}}/>
             <Text>BreadSticks:</Text><Radio radio_props={radio_breadSticks} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({breadSticks:value})}}/>
           <TouchableHighlight style={styles.submitInfo} onPress={this.submitOptions}><Text style={styles.btnText}>Submit Information</Text></TouchableHighlight>
       </View>
@@ -141,9 +141,9 @@ module.exports = React.createClass({
           phone: this.state.button.userDetails.phone,
           address: address,
           orderDetails:{
-            peperoni: this.state.peperoni,
+            pepeproni: this.state.pepperoni,
             cheese: this.state.cheese,
-            chickenWings: this.state.chickenWings,
+            hotWings: this.state.howWings,
             breadSticks: this.state.breadSticks,
           }
         },
@@ -171,7 +171,7 @@ var styles = StyleSheet.create({
     marginBottom: 4,
     height: 15,
     textAlign: 'center',
-    backgroundColor: '#3B3738',
+    backgroundColor: '#2c3e50',
     color: '#ffffff',
     justifyContent: 'center',
   },
