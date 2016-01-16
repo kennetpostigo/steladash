@@ -1,0 +1,24 @@
+{
+  "name": "steladash",
+  "version": "1.0.0",
+  "description": "Dash Hack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennetpostigo/steladash.git"
+  },
+  "author": "Stela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennetpostigo/steladash/issues"
+  },
+  "homepage": "https://github.com/kennetpostigo/steladash#readme",
+  "devDependencies": {
+    "casperjs": "^1.1.0-beta3",
+    "noflo-automaton": "^0.1.6",
+    "pizzapi": "0.0.8"
+  }
+}
