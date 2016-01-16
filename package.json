@@ -18,15 +18,20 @@
   },
   "homepage": "https://github.com/kennetpostigo/steladash#readme",
   "devDependencies": {
-    "react-native": "0.17.0",
     "body-parser": "^1.14.2",
     "casperjs": "^1.1.0-beta3",
     "express": "^4.13.3",
     "method-override": "^2.3.5",
     "noflo-automaton": "^0.1.6",
-    "pizzapi": "0.0.8"
+    "pizzapi": "0.0.8",
+    "react-native": "0.17.0",
+    "util": "^0.10.3"
   },
   "dependencies": {
-    "nodemon": "^1.8.1"
+    "jquery": "^2.2.0",
+    "jshint": "^2.9.1",
+    "nodemon": "^1.8.1",
+    "spooky": "^0.2.5",
+    "tiny-jsonrpc": "^0.2.1"
   }
 }

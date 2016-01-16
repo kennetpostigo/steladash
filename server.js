@@ -16,11 +16,24 @@ app.use( bodyParser.urlencoded( {
 // override the x-http-method header in the request
 app.use( methodOverride( 'x-HTTP-Method-Override' ) );
 
-// dominoes route
-var DominoesRouteHandler = require('./server/modules/pizza/dominoes/DominoesRouteHandler');
+// Setting the static files locations
+app.use( express.static( __dirname + '/' ) );
+
+// dominoes routes
+var findNearbyStores = require('./server/modules/pizza/dominoes/findStores'),
+		getStoreInfo = require('./server/modules/pizza/dominoes/getStoreInfo'),
+		getMenu = require('./server/modules/pizza/dominoes/getMenu'),
+		orderPizza = require('./server/modules/pizza/dominoes/orderPizza'),
+		createCustomer = require('./server/modules/pizza/dominoes/customer/createCustomer'),
+		getCustomer = require('./server/modules/pizza/dominoes/customer/getCustomer');
 
 
-app.use('/dominoes',DominoesRouteHandler);
+app.use('/dominoes', findNearbyStores );
+app.use('/dominoes', getStoreInfo);
+app.use('/dominoes', createCustomer );
+app.use('/dominoes', getMenu);
+app.use('/dominoes', orderPizza);
+app.use('/dominoes', getCustomer);
 
 // Main route
 var mainRoute = require( './server/routes/mainRoute' );

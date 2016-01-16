@@ -1,0 +1,12 @@
+{
+	"freeze": true,
+	"validthis": true,
+	"maxlen": 80,
+	"newcap": true,
+    "esnext": true,
+	"browser": true,
+	"jquery": true,
+	"jasmine": true,
+    "node": true,
+	"worker": true
+}
