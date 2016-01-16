@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/kennetpostigo/steladash#readme",
   "devDependencies": {
+    "body-parser": "^1.14.2",
     "casperjs": "^1.1.0-beta3",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5",
     "noflo-automaton": "^0.1.6",
     "pizzapi": "0.0.8"
+  },
+  "dependencies": {
+    "nodemon": "^1.8.1"
   }
 }
