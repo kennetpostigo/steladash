@@ -1,7 +1,8 @@
 "use strict";
 
 var Spooky = require( 'spooky' ),
-	config = require( '../../config' );
+	config = require( '../../config' ),
+  util = require('util');
 
 var orderPizza = function ( customer ) {
 	// initialize spooky
@@ -11,9 +12,11 @@ var orderPizza = function ( customer ) {
 	var cust = {
 		custAddress: breakAddress[ 0 ],
 		custCity: breakAddress[ 1 ],
-		custState: breakAddress[ 2 ],
+		custState: breakAddress[ 2 ].toUpperCase(),
 		custZip: breakAddress[ 3 ]
 	};
+
+	console.log( cust );
 
 	var spookyBrowser = new Spooky( config.Spooky, function ( err ) {
 		if ( err ) {
@@ -24,13 +27,14 @@ var orderPizza = function ( customer ) {
 		}
 		spookyBrowser.start( config.links.dominoes );
 
-		spookyBrowser
-			.then( function () {
-				var url = this.evaluate( function () {
-					return window.location.href;
-				} )
-				this.echo( "CHECKKKK----" + url );
-			} );
+		spookyBrowser.then( function () {
+			var url = this.evaluate( function () {
+				return window.location.href;
+			} )
+			this.echo( "CHECKKKK----" + url );
+		} );
+
+    spookyBrowser.wait( 5000 );
 
 		spookyBrowser.thenClick( 'a.qa-Cl_order.c-site-nav-main-link-0' );
 
@@ -45,37 +49,86 @@ var orderPizza = function ( customer ) {
 
 		spookyBrowser.thenClick( 'span.form__input--icon.Delivery.js-delivery.c-delivery' );
 
-		spookyBrowser.wait( 2000 );
+		spookyBrowser.wait( 3000 );
 
 		spookyBrowser.run();
 
-		spookyBrowser.then( [
-				{
-					address: cust.address,
-          city: cust.custCity,
-          state: cust.custState,
-          zip: cust.custZip
-        }
-      ,
-				function () {
-					var addressType = this.evaluate( function () {
-						return $( 'select#Address_Type_Select' ).val();
-					} );
+		spookyBrowser.then( [ {
+				address: cust.custAddress,
+				city: cust.custCity,
+				state: cust.custState,
+				zip: cust.custZip,
+        util: util
+        }, function () {
+				var addressType = this.evaluate( function () {
+					return $( 'select#Address_Type_Select' ).val();
+				} );
+				this.echo( address );
+				if ( addressType === "House" ) {
+				  this.fill('form.js-locationsSearchPageForm',{
+				      'Street': address,
+				      'City': city,
+				      'Postal_Code': zip
+				  });
+          this.evaluate(function(){
+            return $('#Region').val("FL");
+          })
+				  this.wait(2000);
+          var formVals = this.evaluate(function(){
+              var formVals = {};
+              formVals.street = $('#Street').val();
+              formVals.city = $('#City').val();
+              formVals.state = $('#Region option:selected').text();
+              formVals.zip = $('#Postal_Code').val();
 
-					if ( addressType === "House" ) {
-            this.fill('form.js-locationsSearchPageForm',{
-                'Street': address,
-                'City': city,
-                'Region': [state],
-                'Postal_Code': zip
-            });
-            this.wait(3000);
-            
-					}else{
-            this.echo( "ERROR--- house isnt an option" );
-          }
-    } ] )
-			// console.log( spookyBrowser );
+              return formVals;
+          })
+
+        this.echo(formVals.street);
+        this.echo(formVals.city);
+        this.echo(formVals.state);
+        this.echo(formVals.zip);
+
+				}else{
+				  this.echo( "ERROR--- house isnt an option" );
+				}
+    } ] );
+
+    // spookyBrowser.then(function(){
+    //     this.evaluate(function(){
+    //       return $('div.form__control-group.grid  button.btn.btn--large.js-search-cta.c-locationsearch-search-cta').click();
+    //     })
+    // });
+
+    spookyBrowser.thenClick('div.form__control-group.grid  button.btn.btn--large.js-search-cta.c-locationsearch-search-cta');
+
+    spookyBrowser.wait( 5000 );
+
+    spookyBrowser.then( function () {
+			var url = this.evaluate( function () {
+				return window.location.href;
+			} )
+			this.echo( "CHECKKKK----" + url );
+		} );
+
+    spookyBrowser.then(function(){
+      var storeClosed = this.evaluate(function(){
+        return $('#xdomain-d0caa1a2').length;
+      });
+
+      if(storeClosed === 1){
+        this.echo('STORE IS CLOSED');
+        this.exit();
+      }
+    });
+
+    spookyBrowser.then( function () {
+			var url = this.evaluate( function () {
+				return window.location.href;
+			} )
+			this.echo( "CHECKKKK----" + url );
+		} );
+
 	} );
 
 	spookyBrowser.on( 'error', function ( err ) {
