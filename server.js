@@ -25,7 +25,8 @@ var findNearbyStores = require('./server/modules/pizza/dominoes/findStores'),
 		getMenu = require('./server/modules/pizza/dominoes/getMenu'),
 		orderPizza = require('./server/modules/pizza/dominoes/orderPizza'),
 		createCustomer = require('./server/modules/pizza/dominoes/customer/createCustomer'),
-		getCustomer = require('./server/modules/pizza/dominoes/customer/getCustomer');
+		getCustomer = require('./server/modules/pizza/dominoes/customer/getCustomer'),
+		updateCustomer = require('./server/modules/pizza/dominoes/customer/updateCustomer');
 
 
 app.use('/dominoes', findNearbyStores );
@@ -34,6 +35,7 @@ app.use('/dominoes', createCustomer );
 app.use('/dominoes', getMenu);
 app.use('/dominoes', orderPizza);
 app.use('/dominoes', getCustomer);
+app.use('/dominoes', updateCustomer);
 
 // Main route
 var mainRoute = require( './server/routes/mainRoute' );
