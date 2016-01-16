@@ -1,5 +1,5 @@
 var express = require( 'express' ),
-	pizzapi = require( 'pizzapi' ),
+	dominos = require( 'dominos' ),
 	router = express.Router();
 
   // Testing
@@ -10,7 +10,7 @@ router.route( '/order' )
 		console.log("order pizza")
 		var customerOrder = req.body.order;
 
-		var order = new pizzapi.Order( {
+		var order = new dominos.Order( {
 			customer: customerOrder.customer,
 			storeID: customerOrder.storeID,
 			deliveryMethod: customerOrder.deliveryMethod
@@ -19,7 +19,7 @@ router.route( '/order' )
 		var orderItems = customerOrder.Items;
 		orderItems.map( function ( item ) {
 			order.addItem(
-				new pizzapi.Item( {
+				new dominos.Item( {
 					code: item.code,
 					options: item.options,
 					quantity: item.quantity

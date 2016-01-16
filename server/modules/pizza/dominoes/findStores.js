@@ -1,12 +1,12 @@
 var express = require( 'express' ),
-    pizzapi = require( 'pizzapi' ),
+    dominos = require( 'dominos' ),
 	  router = express.Router();
 
 
 router.route( '/findNearbyStores' )
 	.post( function ( req, res ) {
 		console.log("findNearbyStores");
-		pizzapi.Util.findNearbyStores(
+		dominos.Util.findNearbyStores(
 			'4000 Central Florida Blvd, Orlando, FL 32816',
 			'Delivery',
 			function ( storeData ) {

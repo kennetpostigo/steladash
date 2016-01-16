@@ -1,5 +1,5 @@
 var express = require('express'),
-    pizzapi = require('pizzapi'),
+    dominos = require('dominos'),
     db = require('../data/customerList'),
     router = express.Router();
 
