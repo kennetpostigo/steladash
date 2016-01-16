@@ -5,6 +5,8 @@ var express = require('express'),
 
 router.route('/getCustomer/:id')
   .get(function(req,res){
+
+      console.log("getCustomer");
     var cusID = req.params.id;
 
     orderPizza(db.customerList[cusID]);

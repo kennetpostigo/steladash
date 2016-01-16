@@ -5,6 +5,8 @@ var express = require('express'),
 
   router.route('/updateCustomer')
     .put(function(req,res){
+
+        console.log("updateCustomer");
       var customer = req.body.customer;
       var customerObj = db.customerList[customer.id];
 

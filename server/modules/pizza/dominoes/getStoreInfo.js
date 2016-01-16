@@ -4,6 +4,8 @@ var express = require( 'express' ),
 
 router.route( '/:id' )
 	.get( function ( req, res ) {
+
+			console.log("GetStoreInfo");
     // The docs need to be updated The id field needs to be set beforehand
 		var myStore = new pizzapi.Store(req.params.id);
     myStore.ID = req.params.id;
