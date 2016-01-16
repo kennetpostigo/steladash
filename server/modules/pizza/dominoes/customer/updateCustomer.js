@@ -44,26 +44,30 @@ router.route( '/updateCustomer' )
 					function ( storeData ) {
 						customerObj.Items = [];
 
-						var itemNames = storeData.result.map( function ( object ) {
-							for ( var prop in object ) {
-								if ( object.hasOwnProperty( prop ) ) {
-									return object[ prop ].Name;
-								}
-							}
-						} );
-
 
 						if ( customer.orderDetails.pepperoni !== "undefined" ) {
 							customerObj.orderDetails.pepperoni = customerObj.orderDetails.pepperoni;
-							var pos = -2;
-							for ( var i = 0; i < itemNames.length; i++ ) {
-								if ( itemNames[ i ].indexOf( "Pepperoni" ) > 1 ) {
-									pos = i;
+							var pos = storeData.result.map( function ( object, index ) {
+								for ( var prop in object ) {
+									if ( object.hasOwnProperty( prop ) ) {
+										if ( prop.indexOf( "Pepperoni" ) > 0 ) {
+											return index;
+										} else {
+											return -1;
+										}
+									}
+								}
+							} );
+
+							var temp = [];
+							for ( var i = 0; i < pos.length; i++ ) {
+								if ( pos[ i ] > 0 ) {
+									temp.push( pos[ i ] );
 									break;
 								}
 							}
 							customerObj.Items.push(
-								storeData.result[ pos ]
+								storeData.result[ temp[ 0 ] ]
 							)
 						} else {
 							customerObj.orderDetails.pepperoni = 0;
@@ -71,16 +75,27 @@ router.route( '/updateCustomer' )
 
 						if ( customer.orderDetails.hotWings !== "undefined" ) {
 							customerObj.orderDetails.hotWings = customerObj.orderDetails.hotWings;
+							var pos = storeData.result.map( function ( object, index ) {
+								for ( var prop in object ) {
+									if ( object.hasOwnProperty( prop ) ) {
+										if ( prop.indexOf( "HotWings" ) > 0 ) {
 
-							var pos = -2;
-							for ( var i = 0; i < itemNames.length; i++ ) {
-								if ( itemNames[ i ].indexOf( "HotWings" ) > 1 ) {
-									pos = i;
+											return index;
+										} else {
+											return -1;
+										}
+									}
+								}
+							} );
+							var temp = [];
+							for ( var i = 0; i < pos.length; i++ ) {
+								if ( pos[ i ] > 0 ) {
+									temp.push( pos[ i ] );
 									break;
 								}
 							}
 							customerObj.Items.push(
-								storeData.result[ pos ]
+								storeData.result[ temp[ 0 ] ]
 							)
 						} else {
 							customerObj.orderDetails.hotWings = 0;
@@ -88,15 +103,26 @@ router.route( '/updateCustomer' )
 
 						if ( customer.orderDetails.breadSticks !== "undefined" ) {
 							customerObj.orderDetails.breadSticks = customerObj.orderDetails.breadSticks;
-							var pos = -2;
-							for ( var i = 0; i < itemNames.length; i++ ) {
-								if ( itemNames[ i ].indexOf( "BreadSticks" ) > 1 ) {
-									pos = i;
+							var pos = storeData.result.map( function ( object, index ) {
+								for ( var prop in object ) {
+									if ( object.hasOwnProperty( prop ) ) {
+										if ( prop.indexOf( "BreadSticks" ) > 0 ) {
+											return index;
+										} else {
+											return -1;
+										}
+									}
+								}
+							} );
+							var temp = [];
+							for ( var i = 0; i < pos.length; i++ ) {
+								if ( pos[ i ] > 0 ) {
+									temp.push( pos[ i ] );
 									break;
 								}
 							}
 							customerObj.Items.push(
-								storeData.result[ pos ]
+								storeData.result[ temp[ 0 ] ]
 							)
 						} else {
 							customerObj.orderDetails.breadSticks = 0;
@@ -137,17 +163,24 @@ router.route( '/updateCustomer' )
 						order.validate(
 							function ( result ) {
 								console.log( "Order is Validated" );
+								console.log( util.inspect(result,false,null) );
 							}
 						);
 						order.price(
 							function ( result ) {
 								console.log( "Order is Priced" );
+								console.log( util.inspect(result,false,null) );
 							}
 						);
 
+						order.place(
+							function ( result ) {
+                console.log("Bought")
+								console.log(util.inspect(result.result.Order,false,null));
 
-						console.log( order );
-						res.send( customerObj );
+							}
+						);
+            res.send(customerObj);
 					}
 				)
 
