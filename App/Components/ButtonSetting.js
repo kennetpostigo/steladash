@@ -21,7 +21,38 @@ var Radio = require('react-native-simple-radio-button');
 module.exports = React.createClass({
   getInitialState: function () {
     return {
-      button: {name: 'dominos', img: './../../assets/DashButton.png', userDetails: {firstName: '', lastName: '', email: '', phone: '', address: '', city: '', state: '', zip: ''}},
+      button: {
+        name: 'dominos',
+        img: './../../assets/DashButton.png',
+        userDetails: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          address: '',
+          city: '',
+          state: '',
+          zip: ''
+        },
+        orderDetails:{
+          radio_peperoni: [
+            {label: 'Yes', value: 0 },
+            {label: 'No', value: 1 },
+          ],
+          radio_cheese: [
+            {label: 'Yes', value: 0 },
+            {label: 'No:', value: 1 },
+          ],
+          radio_chickenWings: [
+            {label: 'Yes', value: 0 },
+            {label: 'No', value: 1 },
+          ],
+          radio_breadSticks = [
+            {label: 'Yes', value: 0 },
+            {label: 'No', value: 1 },
+          ]
+        }
+      },
       show: true,
     };
   },
@@ -51,22 +82,6 @@ module.exports = React.createClass({
     .done();
   },
   render: function() {
-    var radio_peperoni = [
-      {label: 'Yes', value: 0 },
-      {label: 'No', value: 1 },
-    ];
-    var radio_cheese = [
-      {label: 'Yes', value: 0 },
-      {label: 'No:', value: 1 },
-    ];
-    var radio_chickenWings = [
-      {label: 'Yes', value: 0 },
-      {label: 'No', value: 1 },
-    ];
-    var radio_breadSticks = [
-      {label: 'Yes', value: 0 },
-      {label: 'No', value: 1 },
-    ]
     return (
       <View>
         <Text style={styles.title}>Dominos Button Settings</Text>
@@ -81,10 +96,10 @@ module.exports = React.createClass({
           <TextInput style={styles.input} ref="zip" value={this.state.button.userDetails.zip} placeholder="Zip"/>
 
           <Text>Order Information</Text>
-            <Text>Peperoni:</Text><Radio radio_props={radio_peperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} animation={true} onPress={(value) => {this.setState({value:value})}}/>
-            <Text>Cheese:</Text><Radio radio_props={radio_cheese} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Text>Chicken Wings::</Text><Radio radio_props={radio_chickenWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Text>BreadSticks:</Text><Radio radio_props={radio_breadSticks} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Peperoni:</Text><Radio radio_props={this.state.orderDetails.0} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} animation={true} onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Cheese:</Text><Radio radio_props={this.state.orderDetails.1} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Chicken Wings::</Text><Radio radio_props={this.state.orderDetails.2} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>BreadSticks:</Text><Radio radio_props={this.state.orderDetails.3} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
           <TouchableHighlight style={styles.submitInfo} onPress={this.submitOptions}><Text style={styles.btnText}>Submit Information</Text></TouchableHighlight>
       </View>
     );
