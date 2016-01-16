@@ -51,10 +51,22 @@ module.exports = React.createClass({
     .done();
   },
   render: function() {
-    var radio_peperoni = {label: 'Perperoni', value: 0 }
-    var radio_cheese = {label: 'Cheese', value: 0 }
-    var radio_chickenWings = {label: 'Chicken Wings', value: 0 }
-    var radio_breadSticks = {label: 'BreadSticks', value: 0 }
+    var radio_peperoni = [
+      {label: 'Yes', value: 0 },
+      {label: 'No', value: 1 },
+    ];
+    var radio_cheese = [
+      {label: 'Yes', value: 0 },
+      {label: 'No:', value: 1 },
+    ];
+    var radio_chickenWings = [
+      {label: 'Yes', value: 0 },
+      {label: 'No', value: 1 },
+    ];
+    var radio_breadSticks = [
+      {label: 'Yes', value: 0 },
+      {label: 'No', value: 1 },
+    ]
     return (
       <View>
         <Text style={styles.title}>Dominos Button Settings</Text>
@@ -69,10 +81,10 @@ module.exports = React.createClass({
           <TextInput style={styles.input} ref="zip" value={this.state.button.userDetails.zip} placeholder="Zip"/>
 
           <Text>Order Information</Text>
-            <Radio radio_props={radio_peperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Radio radio_props={radio_cheese} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Radio radio_props={radio_chickenWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Radio radio_props={radio_breadSticks} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Peperoni:</Text><Radio radio_props={radio_peperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} animation={true} onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Cheese:</Text><Radio radio_props={radio_cheese} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Chicken Wings::</Text><Radio radio_props={radio_chickenWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>BreadSticks:</Text><Radio radio_props={radio_breadSticks} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
           <TouchableHighlight style={styles.submitInfo} onPress={this.submitOptions}><Text style={styles.btnText}>Submit Information</Text></TouchableHighlight>
       </View>
     );
@@ -132,9 +144,9 @@ var styles = StyleSheet.create({
   title: {
     flex: 1,
     flexDirection: 'row',
-    fontSize: 20,
-    marginBottom: 8,
-    height: 30,
+    fontSize: 10,
+    marginBottom: 4,
+    height: 15,
     textAlign: 'center',
     backgroundColor: '#3B3738',
     color: '#ffffff',
@@ -145,14 +157,14 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor:'#2ecc71',
-    height: 30
+    height: 20
   },
   input: {
-    height: 40
+    height: 35
   },
   btnText: {
     color: '#ffffff',
-    fontSize: 16
+    fontSize: 10
   },
 });
 
