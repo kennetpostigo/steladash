@@ -46,7 +46,8 @@ var styles = StyleSheet.create({
     fontSize: 30,
     marginBottom: 8,
     textAlign: 'center',
-    color: "#ffffff"
+    color: "#ffffff",
+    marginTop: 30
   },
   logo: {
     flexDirection: 'column',
@@ -54,15 +55,17 @@ var styles = StyleSheet.create({
     height: 250
   },
   button:{
-    backgroundColor: '#00FF83',
+    backgroundColor: '#27ae60',
     borderRadius: 20,
     borderStyle: 'solid',
     borderColor: '#ffffff',
     borderWidth: 1,
-    padding: 3
+    padding: 3,
+    marginTop: 15
   },
   btnText: {
     color: '#ffffff',
-    fontSize: 16
+    fontSize: 16,
+    margin: 5
   }
 });
