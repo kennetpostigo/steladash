@@ -4,7 +4,6 @@ var React = require('react-native');
 
 
 var {
-  AppRegistry,
   Image,
   Navigator,
   ListView,
@@ -16,7 +15,9 @@ var {
 module.exports =  React.createClass({
   render: function() {
     return (
-      
+      <View style={styles.container}>
+        <Text style={styles.title}>Your Stela Buttons</Text>
+      </View>
     );
   },
 });
@@ -26,16 +27,18 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  rightContainer: {
-    flex: 1,
+    // alignItems: 'center',
+    backgroundColor: '#ffffff',
   },
   title: {
+    flex: 1,
+    flexDirection: 'row',
   fontSize: 20,
   marginBottom: 8,
   textAlign: 'center',
+  backgroundColor: '#3B3738',
+  color: '#ffffff',
+  height: 30
   },
   year: {
     textAlign: 'center',
