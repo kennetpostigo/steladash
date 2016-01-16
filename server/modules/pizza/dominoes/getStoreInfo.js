@@ -5,7 +5,12 @@ var express = require('express'),
     router.route('/:id')
       .get(function(req,res){
         var myStore = new pizzapi.Store();
-        myStore.ID 
+        myStore.ID = req.params.id;
+        myStore.getInfo(
+          function(storeData){
+            res.send(storeData);
+          }
+        )
       })
 
 

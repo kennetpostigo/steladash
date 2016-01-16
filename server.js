@@ -18,8 +18,10 @@ app.use( methodOverride( 'x-HTTP-Method-Override' ) );
 
 // dominoes routes
 var findNearbyStores = require('./server/modules/pizza/dominoes/findStores');
+		getStoreInfo = require('./server/modules/pizza/dominoes/getStoreInfo');
 
-app.use('/dominoes', findNearbyStores);
+
+app.use('/dominoes', findNearbyStores, getStoreInfo);
 
 // Main route
 var mainRoute = require( './server/routes/mainRoute' );
