@@ -16,9 +16,29 @@ var express = require('express'),
       customerObj.lastName = customer.lastName;
       customerObj.phone = customer.phone;
       customerObj.email = customer.email;
+      customerObj.orderDetails = customer.orderDetails;
 
-      console.log(db.customerList[customer.id]);
-      res.send("success");
+      pizzapi.Util.findNearbyStores(
+  			customerObj.address,
+  			'Delivery',
+  			function ( storeData ) {
+          customerObj.storeData = storeData.result.Stores[0];
+          var storeID = customerObj.storeData.StoreID;
+
+          // gets the store items
+          var myStore = new pizzapi.Store( storeID);
+      		myStore.ID = storeID;
+      		myStore.getFriendlyNames(
+      			function ( storeData ) {
+              customerObj.Items = storeData.result;
+
+      				res.send( customerObj );
+      			}
+      		)
+
+  			}
+  		);
+
     })
 
 module.exports = router;
