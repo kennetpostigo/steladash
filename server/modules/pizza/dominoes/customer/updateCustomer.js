@@ -5,8 +5,7 @@ var express = require('express'),
 
   router.route('/updateCustomer')
     .put(function(req,res){
-
-        console.log("updateCustomer");
+        console.log("updateCustomer", JSON.stringify(req.body.customer));
       var customer = req.body.customer;
       var customerObj = db.customerList[customer.id];
 
@@ -17,7 +16,7 @@ var express = require('express'),
       customerObj.phone = customer.phone;
       customerObj.email = customer.email;
 
-      console.log(db.customerList[customer.id]);
+      // console.log(db.customerList[customer.id]);
       res.send("success");
     })
 

@@ -25,6 +25,7 @@ module.exports = React.createClass({
         name: 'dominos',
         img: './../../assets/DashButton.png',
         userDetails: {
+          id: '',
           firstName: '',
           lastName: '',
           email: '',
@@ -34,24 +35,10 @@ module.exports = React.createClass({
           state: '',
           zip: ''
         },
-        orderDetails:{
-          radio_peperoni: [
-            {label: 'Yes', value: 0 },
-            {label: 'No', value: 1 },
-          ],
-          radio_cheese: [
-            {label: 'Yes', value: 0 },
-            {label: 'No:', value: 1 },
-          ],
-          radio_chickenWings: [
-            {label: 'Yes', value: 0 },
-            {label: 'No', value: 1 },
-          ],
-          radio_breadSticks = [
-            {label: 'Yes', value: 0 },
-            {label: 'No', value: 1 },
-          ]
-        }
+        perperoni: 0,
+        cheese: 0,
+        chickenWings: 0,
+        breadSticks: 0
       },
       show: true,
     };
@@ -75,13 +62,29 @@ module.exports = React.createClass({
            button: {
             name: 'dominos',
             img: './../../assets/DashButton.png',
-            userDetails: {firstName: res.customer.firstName, lastName: res.customer.lastName, email: res.customer.email, phone: res.customer.phone, address: splitAdd[0], city: splitAdd[1], state: splitAdd[2], zip: splitAdd[3]}
+            userDetails: {id: res.customer.id, firstName: res.customer.firstName, lastName: res.customer.lastName, email: res.customer.email, phone: res.customer.phone, address: splitAdd[0], city: splitAdd[1], state: splitAdd[2], zip: splitAdd[3]}
            }
         });
       })
     .done();
   },
   render: function() {
+    var radio_peperoni = [
+      {label: 'No', value: 0 },
+      {label: 'Yes', value: 1 },
+    ];
+    var radio_cheese = [
+      {label: 'No', value: 0 },
+      {label: 'Yes', value: 1 },
+    ];
+    var radio_chickenWings = [
+      {label: 'No', value: 0 },
+      {label: 'Yes', value: 1 },
+    ];
+    var radio_breadSticks = [
+      {label: 'No', value: 0 },
+      {label: 'Yes', value: 1 },
+    ]
     return (
       <View>
         <Text style={styles.title}>Dominos Button Settings</Text>
@@ -96,10 +99,10 @@ module.exports = React.createClass({
           <TextInput style={styles.input} ref="zip" value={this.state.button.userDetails.zip} placeholder="Zip"/>
 
           <Text>Order Information</Text>
-            <Text>Peperoni:</Text><Radio radio_props={this.state.orderDetails.0} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} animation={true} onPress={(value) => {this.setState({value:value})}}/>
-            <Text>Cheese:</Text><Radio radio_props={this.state.orderDetails.1} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Text>Chicken Wings::</Text><Radio radio_props={this.state.orderDetails.2} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
-            <Text>BreadSticks:</Text><Radio radio_props={this.state.orderDetails.3} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'}animation={true}onPress={(value) => {this.setState({value:value})}}/>
+            <Text>Peperoni:</Text><Radio radio_props={radio_peperoni} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({peperoni:value})}}/>
+            <Text>Cheese:</Text><Radio radio_props={radio_cheese} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({cheese:value})}}/>
+            <Text>Chicken Wings::</Text><Radio radio_props={radio_chickenWings} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({chickenWings:value})}}/>
+            <Text>BreadSticks:</Text><Radio radio_props={radio_breadSticks} initial={0} formHorizontal={true} labelHorizontal={true} buttonColor={'#2196f3'} onPress={(value) => {this.setState({breadSticks:value})}}/>
           <TouchableHighlight style={styles.submitInfo} onPress={this.submitOptions}><Text style={styles.btnText}>Submit Information</Text></TouchableHighlight>
       </View>
     );
@@ -122,7 +125,8 @@ module.exports = React.createClass({
   },
   submitOptions: function () {
     this.updateForm();
-    fetch('http://192.168.15.81:6200/dominoes/addCustomer', {
+    var address = this.state.button.userDetails.address + "," + this.state.button.userDetails.city + "," + this.state.button.userDetails.state + "," + this.state.button.userDetails.zip
+    fetch('http://192.168.15.81:6200/dominoes/updateCustomer', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -130,15 +134,19 @@ module.exports = React.createClass({
       },
       body: JSON.stringify({
         customer: {
+          id: this.state.button.userDetails.id,
           firstName: this.state.button.userDetails.firstName,
           lastName: this.state.button.userDetails.lastName,
           email: this.state.button.userDetails.email,
           phone: this.state.button.userDetails.phone,
-          address: this.state.button.userDetails.address,
-          city: this.state.button.userDetails.city,
-          state: this.state.button.userDetails.state,
-          zip: this.state.button.userDetails.zip
-        }
+          address: address,
+          orderDetails:{
+            peperoni: this.state.peperoni,
+            cheese: this.state.cheese,
+            chickenWings: this.state.chickenWings,
+            breadSticks: this.state.breadSticks,
+          }
+        },
       })
     });
     this.props.navigator.push({

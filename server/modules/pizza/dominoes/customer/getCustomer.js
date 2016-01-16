@@ -9,7 +9,7 @@ router.route('/getCustomer/:id')
       console.log("getCustomer");
     var cusID = req.params.id;
 
-    orderPizza(db.customerList[cusID]);
+    //orderPizza(db.customerList[cusID]);
 
     res.send({
       customer: db.customerList[cusID]
