@@ -4,7 +4,6 @@ var React = require('react-native');
 
 
 var {
-  AppRegistry,
   Image,
   Navigator,
   ListView,
@@ -16,7 +15,9 @@ var {
 module.exports = React.createClass({
   render: function() {
     return (
-      
+      <View>
+        <Text>This is ButtonSettings.</Text>
+      </View>
     );
   },
 });

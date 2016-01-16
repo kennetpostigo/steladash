@@ -4,9 +4,9 @@ var React = require('react-native');
 
 
 var {
-  AppRegistry,
   Image,
   Navigator,
+  TouchableHighlight,
   ListView,
   StyleSheet,
   Text,
@@ -16,36 +16,53 @@ var {
 module.exports = React.createClass({
   render: function() {
     return (
-      
+      <View style={styles.container}>
+        <Image
+          source={require('./../../assets/stelaDash.png')}
+          style={styles.logo}
+          ></Image>
+        <Text style={styles.title}>StelaDash</Text>
+        <TouchableHighlight style={styles.button} onPress={this.changeRoute}><Text style={styles.btnText}>Go to Dash Buttons</Text></TouchableHighlight>
+      </View>
     );
   },
+  changeRoute: function(row){
+  this.props.navigator.push({
+    id: 'ButtonList',
+    name: 'ButtonList'
+  });
+}
 });
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  rightContainer: {
-    flex: 1,
+    backgroundColor: '#2c3e50',
   },
   title: {
-  fontSize: 20,
-  marginBottom: 8,
-  textAlign: 'center',
-  },
-  year: {
+    fontSize: 30,
+    marginBottom: 8,
     textAlign: 'center',
+    color: "#ffffff"
   },
-  thumbnail: {
-    width: 53,
-    height: 81,
+  logo: {
+    flexDirection: 'column',
+    width: 250,
+    height: 250
   },
-  listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
+  button:{
+    backgroundColor: '#00FF83',
+    borderRadius: 20,
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    padding: 3
+  },
+  btnText: {
+    color: '#ffffff',
+    fontSize: 16
   }
 });
