@@ -25,7 +25,7 @@ module.exports =  React.createClass({
       return (<View>
         <Text style={styles.title}>Your Stela Buttons</Text>
         <TouchableHighlight onPress={this.changeRoute}><Image source={require('./../../assets/DashButton.png')} style={styles.DashButton}></Image></TouchableHighlight>
-        <TouchableHighlight onPress={this.removeButton} style={styles.removeItem}><Text style={styles.btnText}>-</Text></TouchableHighlight>
+        <TouchableHighlight onPress={this.removeButton} style={styles.removeItem}><Text style={styles.btnText}>Remove Dominos Button</Text></TouchableHighlight>
       </View>);
     } else{
       return (
@@ -94,7 +94,6 @@ var styles = StyleSheet.create({
     flex:1,
     flexDirection: 'row',
     justifyContent: 'center',
-    color: '#ffffff',
     backgroundColor:'#c0392b',
     height: 30
   }
