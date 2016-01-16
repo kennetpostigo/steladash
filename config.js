@@ -12,7 +12,8 @@ module.exports = {
       XSSAuditingEnabled: true,
 			loadImages: false,
 			loadPlugins: false,
-			clientScripts: ["node_modules/jquery/dist/jquery.min.js"]
+			clientScripts: ["node_modules/jquery/dist/jquery.min.js"],
+      logLevel: 'info'
     }
   },
   links: {
