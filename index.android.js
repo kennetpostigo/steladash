@@ -1,6 +1,9 @@
 'use strict';
 
 var React = require('react-native');
+var Home = require('./App/Components/Home.js');
+var ButtonList = require('./App/Components/ButtonList.js');
+var ButtonSettings = require('./App/Components/ButtonSettings.js');
 
 
 var {
@@ -13,12 +16,29 @@ var {
   View,
 } = React;
 
+var _navigator;
+
 var steladash = React.createClass({
   render: function() {
     return (
-
+      <Navigator
+        style={styles.container}
+        tintColor='#FF6600'
+        initialRoute={{id: 'Home'}}
+        renderScene={this.navigatorRenderScene}/>
     );
   },
+  navigatorRenderScene: function(route, navigator){
+    _navigator = navigator;
+    switch (route.id) {
+      case 'Home':
+        return (<Home navigator={navigator} />);
+      case 'ButtonList':
+        return (<ButtonList navigator={navigator} title={route.title} post={route.post}/>);
+      case 'ButtonSettings':
+        return (<ButtonSettings navigator={navigator} />);
+    }
+  }
 });
 
 var styles = StyleSheet.create({

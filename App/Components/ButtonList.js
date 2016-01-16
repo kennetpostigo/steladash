@@ -13,10 +13,10 @@ var {
   View,
 } = React;
 
-var steladash = React.createClass({
+module.exports =  React.createClass({
   render: function() {
     return (
-
+      
     );
   },
 });
