@@ -16,10 +16,11 @@ app.use( bodyParser.urlencoded( {
 // override the x-http-method header in the request
 app.use( methodOverride( 'x-HTTP-Method-Override' ) );
 
-// dominoes routes
-var findNearbyStores = require('./server/modules/pizza/dominoes/findStores');
+// dominoes route
+var DominoesRouteHandler = require('./server/modules/pizza/dominoes/DominoesRouteHandler');
 
-app.use('/dominoes', findNearbyStores);
+
+app.use('/dominoes',DominoesRouteHandler);
 
 // Main route
 var mainRoute = require( './server/routes/mainRoute' );
