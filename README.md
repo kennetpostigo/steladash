@@ -1,6 +1,6 @@
 # Steladash
 
-## KnighHacks Hackthon 2016
+## KnighHacks Hackthon 2016 ♘
 
 This repository holds our code for our Hack at KnightHack
 
