@@ -89,7 +89,7 @@ var styles = StyleSheet.create({
     resizeMode:'stretch',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    marginBottom: 275
+    marginBottom: 245
   },
   listView: {
     paddingTop: 20,
@@ -99,13 +99,14 @@ var styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     justifyContent: 'flex-start',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    paddingTop: 20
   },
   removeItem:{
     flex:1,
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor:'#DD2838',
-    height: 30
+    height: 60
   }
 });

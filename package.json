@@ -31,6 +31,7 @@
     "dominos": "^2.0.0",
     "jquery": "^2.2.0",
     "jshint": "^2.9.1",
+    "node-dash-button": "0.2.6",
     "nodemon": "^1.8.1",
     "spooky": "^0.2.5",
     "tiny-jsonrpc": "^0.2.1"

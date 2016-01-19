@@ -160,27 +160,33 @@ router.route( '/updateCustomer' )
 
 
 						order.Payments.push( cardInfo );
+            var dash = dash_button('54:1e:56:e5:64:90');
+            dash.on("detected", function (){
+              console.log("Dash Button Found");
 
-						order.validate(
-							function ( result ) {
-								console.log( "Order is Validated" );
-								console.log( util.inspect(result,false,null) );
-							}
-						);
-						order.price(
-							function ( result ) {
-								console.log( "Order is Priced" );
-								console.log( util.inspect(result,false,null) );
-							}
-						);
+              order.validate(
+                function ( result ) {
+                  console.log( "Order is Validated" );
+                  console.log( util.inspect(result,false,null) );
+                }
+              );
+              order.price(
+                function ( result ) {
+                  console.log( "Order is Priced" );
+                  console.log( util.inspect(result,false,null) );
+                }
+              );
 
-						order.place(
-							function ( result ) {
-                console.log("Bought")
-								console.log(util.inspect(result.result.Order,false,null));
+              order.place(
+                function ( result ) {
+                  console.log("Bought")
+                  console.log(util.inspect(result.result.Order,false,null));
 
-							}
-						);
+                }
+              );
+
+            });
+
             res.send(customerObj);
 					}
 				)
@@ -188,6 +194,6 @@ router.route( '/updateCustomer' )
 			}
 		);
 
-	} )
+	} );
 
 module.exports = router;
